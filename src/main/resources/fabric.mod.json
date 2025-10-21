@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "ucm",
+	"version": "${version}",
+	"name": "UnCreate Mod",
+	"description": "This is a custom module.",
+	"authors": [
+		"Redstone233"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/ucm/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.redstone233.ucm.UnCreateMod"
+		],
+		"fabric-datagen": [
+			"net.redstone233.ucm.UnCreateModDataGenerator"
+		],
+        "client": [
+            "net.redstone233.ucm.UnCreateModClient"
+        ],
+        "modmenu": [
+            "net.redstone233.ucm.integration.ModMenuIntegration"
+          ]
+	},
+	"mixins": [
+		"ucm.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
