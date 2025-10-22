@@ -19,7 +19,7 @@ public class ConfigScreen {
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
         setupGeneralCategory(builder, entryBuilder);
-        setupDwCategory(builder, entryBuilder);
+        setupDebugCategory(builder, entryBuilder);
 
         return builder.build();
     }
@@ -36,14 +36,14 @@ public class ConfigScreen {
 
     }
 
-    private static void setupDwCategory(ConfigBuilder builder, ConfigEntryBuilder entryBuilder) {
-        ConfigCategory general = builder.getOrCreateCategory(Text.literal("调试设定"));
+    private static void setupDebugCategory(ConfigBuilder builder, ConfigEntryBuilder entryBuilder) {
+        ConfigCategory debug = builder.getOrCreateCategory(Text.literal("调试设定"));
 
-        general.addEntry(entryBuilder.startBooleanToggle(Text.literal("启用详细日志"),
-                        ClientConfig.getDebugMode())
+        debug.addEntry(entryBuilder.startBooleanToggle(Text.literal("启用调试功能"),
+                        ClientConfig.getEnabledUnCreate())
                 .setDefaultValue(true)
-                .setTooltip(Text.literal("是否启用详细日志"))
-                .setSaveConsumer(ClientConfig::setDebugMode)
+                .setTooltip(Text.literal("设定是否启用调试"))
+                .setSaveConsumer(ClientConfig::setEnabledUnCreate)
                 .build());
 
     }

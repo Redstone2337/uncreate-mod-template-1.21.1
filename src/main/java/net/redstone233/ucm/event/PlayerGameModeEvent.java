@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameMode;
+import net.redstone233.ucm.UnCreateMod;
 import net.redstone233.ucm.config.ClientConfig;
 
 public class PlayerGameModeEvent {
@@ -18,12 +19,18 @@ public class PlayerGameModeEvent {
                         }
                     }
                 });
+                if (ClientConfig.getDebugMode()) {
+                    UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is working!");
+                }
             } else {
                 if (server != null) {
                     server.getPlayerManager().getPlayerList().forEach(player -> {
                         player.sendMessage(Text.literal("模组未启用！请检查是否正常加载。").formatted(Formatting.BOLD,Formatting.RED));
                         }
                     );
+                }
+                if (ClientConfig.getDebugMode()) {
+                    UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is not working!");
                 }
             }
         });

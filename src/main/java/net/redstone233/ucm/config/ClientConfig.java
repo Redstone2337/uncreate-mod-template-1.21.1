@@ -23,7 +23,7 @@ public class ClientConfig {
         ClientConfig.BUILDER.push("debug");
 
         DEBUG_MODE = ClientConfig.BUILDER
-                .comment("启用调试模式（显示详细日志）")
+                .comment("是否启用调试模式")
                 .define("debugMode", false);
 
 
@@ -49,13 +49,14 @@ public class ClientConfig {
         return DEBUG_MODE.get();
     }
 
+    public static void setDebugMode(boolean debugMode) {
+        DEBUG_MODE.set(debugMode);
+    }
+
     public static boolean getEnabledUnCreate() {
         return ENABLED_UN_CREATE.get();
     }
 
-    public static void setDebugMode(boolean debugMode) {
-        DEBUG_MODE.set(debugMode);
-    }
 
     public static void setEnabledUnCreate(boolean enabledUnCreate) {
         ENABLED_UN_CREATE.set(enabledUnCreate);
