@@ -11,7 +11,7 @@ public class ModKeys {
     public static KeyBinding ANNOUNCEMENT_KEY = new KeyBinding(
             "key.ucm.open_config",
             InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_U,
+            GLFW.GLFW_KEY_RIGHT_ALT,
             "category.ucm"
     );
 

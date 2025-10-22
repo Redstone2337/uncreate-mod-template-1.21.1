@@ -13,7 +13,7 @@ public class ConfigScreen {
     public static Screen create(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.translatable("title.tam.config"))
+                .setTitle(Text.literal("模组配置"))
                 .setSavingRunnable(ConfigScreen::saveConfig);
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
