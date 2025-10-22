@@ -6,7 +6,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.redstone233.ucm.config.ClientConfig;
+import net.redstone233.ucm.config.ConfigManager;
 
 public class UnCreateCommand {
     public static LiteralArgumentBuilder<ServerCommandSource> register() {
@@ -14,24 +14,30 @@ public class UnCreateCommand {
                 .requires(source -> source.hasPermissionLevel(4))
                 .then(CommandManager.literal("debug")
                         .then(CommandManager.argument("status", BoolArgumentType.bool())
-                                .executes(null)
+                                .executes(run -> execute(
+                                        run.getSource(),
+                                        BoolArgumentType.getBool(run, "status"))
+                                )
                         )
                 )
                 .then(CommandManager.literal("general")
                         .then(CommandManager.argument("status", BoolArgumentType.bool())
-                                .executes(null)
+                                .executes(run -> execute1(
+                                        run.getSource(),
+                                        BoolArgumentType.getBool(run, "status"))
                                 )
+                        )
                 );
     }
 
     private static int execute(ServerCommandSource source, boolean status) {
         if (source instanceof ServerCommandSource && source.getPlayer() != null) {
             if (status) {
-                ClientConfig.setDebugMode(true);
-                ClientConfig.saveConfig();
+                ConfigManager.setDebugMode(true);
+                ConfigManager.saveConfig();
             } else {
-                ClientConfig.setDebugMode(false);
-                ClientConfig.saveConfig();
+                ConfigManager.setDebugMode(false);
+                ConfigManager.saveConfig();
             }
             source.sendFeedback(() -> Text.literal("执行成功！详细日志已开启。").formatted(Formatting.GREEN,Formatting.BOLD),true);
             return 1;
@@ -44,11 +50,11 @@ public class UnCreateCommand {
     private static int execute1(ServerCommandSource source, boolean status) {
         if (source instanceof ServerCommandSource && source.getPlayer() != null) {
             if (status) {
-                ClientConfig.setEnabledUnCreate(true);
-                ClientConfig.saveConfig();
+                ConfigManager.setEnabledUnCreate(true);
+                ConfigManager.saveConfig();
             } else {
-                ClientConfig.setEnabledUnCreate(false);
-                ClientConfig.saveConfig();
+                ConfigManager.setEnabledUnCreate(false);
+                ConfigManager.saveConfig();
             }
             source.sendFeedback(() -> Text.literal("执行成功！当前状态：" + status).formatted(Formatting.GREEN,Formatting.BOLD),true);
             return 1;

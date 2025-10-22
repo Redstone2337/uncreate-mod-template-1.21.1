@@ -6,7 +6,8 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.redstone233.ucm.UnCreateMod;
-import net.redstone233.ucm.config.ClientConfig;
+import net.redstone233.ucm.config.ConfigManager;
+
 
 public class ConfigScreen {
 
@@ -28,10 +29,10 @@ public class ConfigScreen {
         ConfigCategory general = builder.getOrCreateCategory(Text.literal("功能设定"));
 
         general.addEntry(entryBuilder.startBooleanToggle(Text.literal("启用禁止调创造"),
-                        ClientConfig.getEnabledUnCreate())
+                        ConfigManager.getEnabledUnCreate())
                 .setDefaultValue(true)
                 .setTooltip(Text.literal("设定是否启用禁止创造模式"))
-                .setSaveConsumer(ClientConfig::setEnabledUnCreate)
+                .setSaveConsumer(ConfigManager::setEnabledUnCreate)
                 .build());
 
     }
@@ -40,17 +41,17 @@ public class ConfigScreen {
         ConfigCategory debug = builder.getOrCreateCategory(Text.literal("调试设定"));
 
         debug.addEntry(entryBuilder.startBooleanToggle(Text.literal("启用调试功能"),
-                        ClientConfig.getEnabledUnCreate())
-                .setDefaultValue(true)
+                        ConfigManager.getEnabledUnCreate())
+                .setDefaultValue(false)
                 .setTooltip(Text.literal("设定是否启用调试"))
-                .setSaveConsumer(ClientConfig::setEnabledUnCreate)
+                .setSaveConsumer(ConfigManager::setEnabledUnCreate)
                 .build());
 
     }
 
     private static void saveConfig() {
         try {
-            ClientConfig.saveConfig();
+            ConfigManager.saveConfig();
             UnCreateMod.LOGGER.info("公告模组配置已保存");
         } catch (Exception e) {
             UnCreateMod.LOGGER.error("保存配置时出错", e);

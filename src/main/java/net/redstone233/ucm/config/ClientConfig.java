@@ -34,7 +34,7 @@ public class ClientConfig {
     public static final ModConfigSpec SPEC = BUILDER.build();
 
     public static void init() {
-        NeoForgeConfigRegistry.INSTANCE.register(UnCreateMod.MOD_ID, ModConfig.Type.CLIENT, SPEC, "UnCreate-client.toml");
+        NeoForgeConfigRegistry.INSTANCE.register(UnCreateMod.MOD_ID, ModConfig.Type.SERVER, SPEC, "UnCreate-server.toml");
     }
 
     public static ModConfigSpec.BooleanValue ENABLED_UN_CREATE;
@@ -43,31 +43,5 @@ public class ClientConfig {
     static {
         setupGeneralSettings();
         setupDebugSettings();
-    }
-
-    public static boolean getDebugMode() {
-        return DEBUG_MODE.get();
-    }
-
-    public static void setDebugMode(boolean debugMode) {
-        DEBUG_MODE.set(debugMode);
-    }
-
-    public static boolean getEnabledUnCreate() {
-        return ENABLED_UN_CREATE.get();
-    }
-
-
-    public static void setEnabledUnCreate(boolean enabledUnCreate) {
-        ENABLED_UN_CREATE.set(enabledUnCreate);
-    }
-
-    public static void saveConfig() {
-        // 在 NeoForge 中，配置会自动保存
-        // 这里可以添加额外的保存逻辑
-        if (ClientConfig.SPEC.isLoaded()) {
-            // 触发配置保存
-            ClientConfig.SPEC.save();
-        }
     }
 }

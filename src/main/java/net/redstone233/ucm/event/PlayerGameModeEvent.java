@@ -1,38 +1,34 @@
 package net.redstone233.ucm.event;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameMode;
 import net.redstone233.ucm.UnCreateMod;
 import net.redstone233.ucm.config.ClientConfig;
+import net.redstone233.ucm.config.ConfigManager;
 
 public class PlayerGameModeEvent {
     public static void register() {
-        ServerTickEvents.START_SERVER_TICK.register(server -> {
-            if (server != null && ClientConfig.getEnabledUnCreate()) {
-                server.getPlayerManager().getPlayerList().forEach(player ->
-                {
-                    if (player != null) {
-                        if (player.isCreative()) {
-                            player.changeGameMode(GameMode.SURVIVAL);
-                        }
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+                if (ConfigManager.getEnabledUnCreate()) {
+                    if (player.interactionManager.getGameMode() == GameMode.CREATIVE) {
+                        player.changeGameMode(GameMode.SURVIVAL);
                     }
-                });
-                if (ClientConfig.getDebugMode()) {
-                    UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is working!");
-                }
-            } else {
-                if (server != null) {
-                    server.getPlayerManager().getPlayerList().forEach(player -> {
-                        player.sendMessage(Text.literal("模组未启用！请检查是否正常加载。").formatted(Formatting.BOLD,Formatting.RED));
-                        }
-                    );
-                }
-                if (ClientConfig.getDebugMode()) {
-                    UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is not working!");
+                    if (ConfigManager.getDebugMode()) {
+                        UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is working!");
+                    }
+                } else {
+                    if (ConfigManager.getDebugMode()) {
+                        UnCreateMod.LOGGER.info("UnCreateMod: PlayerGameModeEvent is not working!");
+                    }
+                    player.sendMessage(Text.literal("似乎并没有正常运行！").formatted(Formatting.RED, Formatting.BOLD));
                 }
             }
         });
+
     }
 }

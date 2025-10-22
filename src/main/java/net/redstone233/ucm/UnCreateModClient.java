@@ -4,7 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.text.Text;
-import net.redstone233.ucm.config.ClientConfig;
+import net.redstone233.ucm.config.ConfigManager;
 import net.redstone233.ucm.event.PlayerGameModeEvent;
 import net.redstone233.ucm.gui.ConfigScreen;
 import net.redstone233.ucm.keys.ModKeys;
@@ -34,7 +34,7 @@ public class UnCreateModClient implements ClientModInitializer {
                 if (client.player != null && client.player.hasPermissionLevel(4)) {
                     // 打开配置屏幕
                     client.setScreen(ConfigScreen.create(client.currentScreen));
-                    if (ClientConfig.getDebugMode()) {
+                    if (ConfigManager.getDebugMode()) {
                         UnCreateMod.LOGGER.info("UnCreateModClient: 打开配置界面");
                     }
                 } else {
@@ -44,7 +44,7 @@ public class UnCreateModClient implements ClientModInitializer {
                                 false
                         );
                     }
-                    if (ClientConfig.getDebugMode()) {
+                    if (ConfigManager.getDebugMode()) {
                         UnCreateMod.LOGGER.info("UnCreateModClient: 需要OP权限才能打开配置界面");
                     }
                 }
