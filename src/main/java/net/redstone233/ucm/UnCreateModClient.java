@@ -17,9 +17,11 @@ public class UnCreateModClient implements ClientModInitializer {
 		// Proceed with mild caution.
             UnCreateMod.LOGGER.info("开始初始化模组客户端内容...");
             long startTime = System.currentTimeMillis();
+        if (ConfigManager.getEnabledUnCreate()) {
             PlayerGameModeEvent.register();
             UnCreateMod.LOGGER.info("模组玩家游戏模式事件初加载完毕，总耗时 {}ms", System.currentTimeMillis() - startTime);
-            ModKeys.register();
+        }
+        ModKeys.register();
             UnCreateMod.LOGGER.info("模组键位绑定成功，总耗时 {}ms", System.currentTimeMillis() - startTime);
             register();
             UnCreateMod.LOGGER.info("模组客户端键位初始化完毕，总耗时 {}ms", System.currentTimeMillis() - startTime);
