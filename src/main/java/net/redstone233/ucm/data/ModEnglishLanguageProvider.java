@@ -15,8 +15,13 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add("key.ucm.open_config", "Open UnCreateMod Config");
+        translationBuilder.add("key.ucm.use_ability", "Use Ability For Sword");
         translationBuilder.add("category.ucm", "Un Create Mod");
         translationBuilder.add("itemGroup.ucm.mod_items", "Un Create Mod | Customization Items");
+
+        translationBuilder.add("tooltip.ability_sword.display1","Hold [");
+        translationBuilder.add("key.use_ability.item","%s");
+        translationBuilder.add("tooltip.ability_sword.display2"," ] for Ability to use");
 
         translationBuilder.add(ModItems.BLAZING_FLAME_SWORD, "Blazing Flame Sword");
         translationBuilder.add(ModItems.ICE_FREEZE_SWORD, "Ice Freeze Sword");

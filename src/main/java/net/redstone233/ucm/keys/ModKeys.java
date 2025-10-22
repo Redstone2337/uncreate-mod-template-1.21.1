@@ -15,8 +15,16 @@ public class ModKeys {
             "category.ucm"
     );
 
+    public static KeyBinding USE_ABILITY_KEY = new KeyBinding(
+            "key.ucm.use_ability",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_RIGHT_CONTROL,
+            "category.ucm"
+    );
+
     public static void register() {
         KeyBindingHelper.registerKeyBinding(ANNOUNCEMENT_KEY);
+        KeyBindingHelper.registerKeyBinding(USE_ABILITY_KEY);
 
         UnCreateMod.LOGGER.info("注册按键绑定成功");
     }
@@ -24,5 +32,9 @@ public class ModKeys {
 
     public static boolean isAnnouncementKeyPressed() {
         return ANNOUNCEMENT_KEY.isPressed();
+    }
+
+    public static boolean isUseAbilityKeyPressed() {
+        return USE_ABILITY_KEY.isPressed();
     }
 }

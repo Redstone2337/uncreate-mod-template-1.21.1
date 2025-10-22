@@ -3,5 +3,9 @@
   "item.ucm.blazing_flame_sword": "Blazing Flame Sword",
   "item.ucm.ice_freeze_sword": "Ice Freeze Sword",
   "itemGroup.ucm.mod_items": "Un Create Mod | Customization Items",
-  "key.ucm.open_config": "Open UnCreateMod Config"
+  "key.ucm.open_config": "Open UnCreateMod Config",
+  "key.ucm.use_ability": "Use Ability For Sword",
+  "key.use_ability.item": "%s",
+  "tooltip.ability_sword.display1": "Hold [",
+  "tooltip.ability_sword.display2": " ] for Ability to use"
 }
