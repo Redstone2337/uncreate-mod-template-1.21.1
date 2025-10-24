@@ -2,7 +2,7 @@ package net.redstone233.ucm.config;
 
 public class ConfigManager {
     public static boolean getDebugMode() {
-        return ClientConfig.DEBUG_MODE.get();
+        return ClientConfig.DEBUG_MODE.getAsBoolean();
     }
 
     public static void setDebugMode(boolean debugMode) {
@@ -10,7 +10,7 @@ public class ConfigManager {
     }
 
     public static boolean getEnabledUnCreate() {
-        return ClientConfig.ENABLED_UN_CREATE.get();
+        return ClientConfig.ENABLED_UN_CREATE.getAsBoolean();
     }
 
 
