@@ -6,6 +6,7 @@ import net.minecraft.item.ToolMaterials;
 import net.minecraft.util.Identifier;
 import net.redstone233.ucm.UnCreateMod;
 import net.redstone233.ucm.items.custom.BlazingFlameSwordItem;
+import net.redstone233.ucm.items.custom.IceFreezeSwordItem;
 
 public class ModItems {
 
@@ -17,7 +18,7 @@ public class ModItems {
 
     public static final Item ICE_FREEZE_SWORD = register(
             "ice_freeze_sword",
-            new BlazingFlameSwordItem(ToolMaterials.NETHERITE, new Item.Settings()
+            new IceFreezeSwordItem(ToolMaterials.NETHERITE, new Item.Settings()
                     .maxDamage(3000000)
             ));
 
